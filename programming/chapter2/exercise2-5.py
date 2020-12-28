@@ -6,7 +6,7 @@ matplotlib.style.use('dark_background')
 k = 10
 q = np.random.normal(size = k)
 bandit = lambda A: np.random.normal(q[A], 1)
-steps = 100000
+steps = 10000
 epsilon = 0.1
 alpha = 0.1
 
@@ -36,6 +36,8 @@ for i in range(steps):
   optimal = np.argmax(q)
   optimal_action_taken_0.append(optimal_action_taken_0[-1] + (int(A0 == optimal) - optimal_action_taken_0[-1]) / (i + 1))
   optimal_action_taken_1.append(optimal_action_taken_1[-1] + (int(A1 == optimal) - optimal_action_taken_1[-1]) / (i + 1))
+
+  q += np.random.normal(0, 0.01)
 
 fig = plt.figure(figsize = (15, 7))
 plt.subplot(1, 2, 1)
